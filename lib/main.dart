@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       title: 'Todo App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
@@ -25,9 +25,6 @@ class HomePage extends StatefulWidget {
 
   HomePage() {
     items = [];
-    // items.add(Item(title: "Item 1", done: false));
-    // items.add(Item(title: "Item 2", done: true));
-    // items.add(Item(title: "Item 3", done: false));
   }
   @override
   _HomePageState createState() => _HomePageState();
@@ -83,7 +80,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple[100],
       appBar: AppBar(
+        shadowColor: Colors.black,
         title: TextFormField(
           controller: newTaskCtrl,
           keyboardType: TextInputType.text,
@@ -101,9 +100,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
         itemCount: widget.items.length,
         itemBuilder: (BuildContext ctxt, int index) {
+          ;
           final item = widget.items[index];
           return Dismissible(
             child: CheckboxListTile(
+              activeColor: Colors.blue.withOpacity(0.9),
               title: Text(item.title),
               value: item.done,
               onChanged: (value) {
@@ -114,8 +115,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             key: Key(item.title),
-            background: Container(
-              color: Colors.black.withOpacity(0.2),
+            background: Card(
+              color: Colors.black.withOpacity(0.01),
             ),
             onDismissed: (direction) {
               remove(index);
